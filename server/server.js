@@ -9,15 +9,13 @@ require("dotenv").config();
 // app
 const app = express();
 
-// db
-mongoose
-  .connect(process.env.DATABASE, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: true,
-  })
-  .then(() => console.log("DB CONNECTED"))
-  .catch((err) => console.log("DB CONNECTION ERR", err));
+mongoose.connect(
+  'mongodb+srv://unipr:'+process.env.DB_USER_PASS+'@unipr.g2qmr.mongodb.net/ecommerce',
+  async(err)=>{
+      if(err) throw err;
+      console.log("Connect to MongoDB...")
+  }
+)
 
 // middlewares
 app.use(morgan("dev"));
